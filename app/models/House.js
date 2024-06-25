@@ -1,3 +1,5 @@
+import { AppState } from "../AppState.js";
+
 export class House {
   constructor(data) {
     this.imgUrl = data.imgUrl;
@@ -36,10 +38,7 @@ export class House {
                             </h5>
                             <h5>Created On: ${this.createdAt.toLocaleDateString()}</h5>
                             <div class="text-end">
-                                <button onclick="app.HousesController.destroyHouse('${
-                                  this.id
-                                }')"
-                                    class="btn btn-outline-danger" type="button">Delete House</button>
+                                ${this.computeDeleteButton}
                             </div>
                         </div>
                     </div>
@@ -47,6 +46,11 @@ export class House {
             </div>
         </div>
             `;
+  }
+
+  get computeDeleteButton() {
+    if (this.creatorId != AppState.account?.id) return "";
+    return `<button onclick="app.HousesController.destroyHouse('${this.id}')" class="btn btn-outline-danger">Delete House</button>`;
   }
 }
 

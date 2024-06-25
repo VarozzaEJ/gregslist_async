@@ -6,39 +6,38 @@ import { setHTML, setText } from "../utils/Writer.js";
 
 export class CarsController {
   constructor() {
-    AppState.on('cars', this.drawCars)
-    AppState.on('account', this.drawCars)
-    AppState.on('account', this.showCarForm)
+    AppState.on("cars", this.drawCars);
+    AppState.on("account", this.drawCars);
+    AppState.on("account", this.showCarForm);
 
-    this.getCars()
-    this.showCarForm()
+    this.getCars();
+    this.showCarForm();
   }
   // CREATE
   async createCar() {
     try {
-      event.preventDefault() // do not refresh
-      const form = event.target // get the form element out of the HTML
-      const carData = getFormData(form) // get the data out of the form
-      console.log('RAW CAR DATA', carData);
-      await carsService.createCar(carData)
+      event.preventDefault(); // do not refresh
+      const form = event.target; // get the form element out of the HTML
+      const carData = getFormData(form); // get the data out of the form
+      console.log("RAW CAR DATA", carData);
+      await carsService.createCar(carData);
 
       // TODO clear form AFTER network request
       // @ts-ignore
-      form.reset()
+      form.reset();
     } catch (error) {
-      Pop.error(error) //notify user
-      console.error('FAILED TO CREATE CAR', error) //notify developer
+      Pop.error(error); //notify user
+      console.error("FAILED TO CREATE CAR", error); //notify developer
     }
   }
-
 
   // READ
   async getCars() {
     try {
-      await carsService.getCars()
+      await carsService.getCars();
     } catch (error) {
-      Pop.error(error) //notify user
-      console.error('FAILED TO GET CARS', error) //notify developer
+      Pop.error(error); //notify user
+      console.error("FAILED TO GET CARS", error); //notify developer
     }
   }
 
@@ -46,46 +45,47 @@ export class CarsController {
   async destroyCar(carId) {
     try {
       // NOTE have to await Pop.confirm
-      const wantsToDelete = await Pop.confirm("Are you sure that you want to delete this car?")
+      const wantsToDelete = await Pop.confirm(
+        "Are you sure that you want to delete this car?"
+      );
 
-      if (!wantsToDelete) return //stop function
+      if (!wantsToDelete) return; //stop function
 
+      await carsService.destroyCar(carId);
 
-      await carsService.destroyCar(carId)
-
-      Pop.success("Car was deleted!")
+      Pop.success("Car was deleted!");
     } catch (error) {
-      Pop.error(error) //notify user
-      console.error('FAILED TO DESTROY CAR', error) //notify developer
+      Pop.error(error); //notify user
+      console.error("FAILED TO DESTROY CAR", error); //notify developer
     }
   }
 
   drawCars() {
-    const carListingsElement = document.getElementById('carListings')
+    const carListingsElement = document.getElementById("carListings");
 
-    if (!carListingsElement) return
+    if (!carListingsElement) return;
 
-    const cars = AppState.cars
-    let innerHTMLString = ''
-    cars.forEach((car) => innerHTMLString += car.cardHTMLTemplate)
+    const cars = AppState.cars;
+    let innerHTMLString = "";
+    cars.forEach((car) => (innerHTMLString += car.cardHTMLTemplate));
 
-    carListingsElement.innerHTML = innerHTMLString
+    carListingsElement.innerHTML = innerHTMLString;
   }
 
   showCarForm() {
-    const carFormElement = document.getElementById('carForm')
+    const carFormElement = document.getElementById("carForm");
 
-    if (!AppState.account) return
+    if (!AppState.account) return;
 
-    if (!carFormElement) return
+    if (!carFormElement) return;
 
-    carFormElement.classList.remove('d-none')
+    carFormElement.classList.remove("d-none");
   }
 
   drawPrice() {
     // @ts-ignore
-    const valueFromRange = event.target.value
+    const valueFromRange = event.target.value;
 
-    setText('carPriceFromRange', valueFromRange)
+    setText("carPriceFromRange", valueFromRange);
   }
 }

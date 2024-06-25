@@ -17,6 +17,15 @@ class HousesService {
     AppState.houses.push(newHouse);
     console.log(AppState.houses);
   }
+
+  async destroyHouse(houseId) {
+    const house = await api.delete(`api/houses/${houseId}`);
+    const houseIndex = AppState.houses.findIndex(
+      (house) => house.id == houseId
+    );
+    if (houseIndex == -1) throw new Error("Find index is messed up dawg");
+    AppState.houses.splice(houseIndex, 1);
+  }
 }
 
 export const housesService = new HousesService();

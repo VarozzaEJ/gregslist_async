@@ -21,3 +21,7 @@
   border-style: solid;
   border-width: 2px;
 }
+
+.hidden {
+  display: none !important;
+}

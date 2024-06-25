@@ -6,26 +6,48 @@
     <div class="m-3 px-3">
       <form onsubmit="app.HousesController.createHouse()">
         <div class="mb-3">
-          <label for="name" class="form-label">House Name</label>
+          <label for="description" class="form-label">House Description</label>
           <input
             type="text"
             class="form-control"
-            id="name"
-            placeholder="House Name..."
+            id="description"
+            placeholder="House description..."
             required
             maxlength="100"
-            name="name"
+            name="description"
+          />
+        <div class="mb-3">
+          <label for="year" class="form-label">House Year</label>
+          <input
+            type="number"
+            class="form-control"
+            id="year"
+            placeholder="House year..."
+            required
+            maxlength="100"
+            name="year"
+          />
+        <div class="mb-3">
+          <label for="levels" class="form-label">How Many Floors?</label>
+          <input
+            type="number"
+            class="form-control"
+            id="levels"
+            placeholder="House levels..."
+            required
+            maxlength="100"
+            name="levels"
           />
         </div>
         <div class="mb-3">
-          <label for="imgURL" class="form-label">House ImgURL</label>
+          <label for="imgUrl" class="form-label">House ImgUrl</label>
           <input
             type="url"
             class="form-control"
-            id="imgURL"
+            id="imgUrl"
             required
             maxlength="2000"
-            name="imgURL"
+            name="imgUrl"
           />
         </div>
         <div class="mb-3">

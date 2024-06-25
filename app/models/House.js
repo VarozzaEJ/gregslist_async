@@ -11,6 +11,7 @@ export class House {
     this.updatedAt = new Date(data.updatedAt);
     this.creatorId = data.creatorId;
     this.creator = data.creator;
+    this.levels = data.levels;
   }
 
   get cardHTMLTemplate() {

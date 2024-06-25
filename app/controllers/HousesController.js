@@ -1,5 +1,6 @@
 import { AppState } from "../AppState.js";
 import { housesService } from "../services/HousesService.js";
+import { getFormData } from "../utils/FormHandler.js";
 import { Pop } from "../utils/Pop.js";
 
 export class HousesController {
@@ -13,7 +14,9 @@ export class HousesController {
     try {
       event.preventDefault();
       const form = event.target;
-      //   await housesService.createHouse(houseData);
+      const houseData = getFormData(form);
+      console.log("Raw House Data", houseData);
+      await housesService.createHouse(houseData);
     } catch (error) {
       Pop.error(error);
       console.log("Error Creating the House Dawggy");

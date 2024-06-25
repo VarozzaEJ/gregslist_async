@@ -3,6 +3,84 @@
     <div class="col-12">
       <h1 class="text-center">Houses</h1>
     </div>
-    <div class="row" id-="houses"></div>
+    <div class="m-3 px-3">
+      <form onsubmit="app.HousesController.createHouse()">
+        <div class="mb-3">
+          <label for="name" class="form-label">House Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="House Name..."
+            required
+            maxlength="100"
+            name="name"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="imgURL" class="form-label">House ImgURL</label>
+          <input
+            type="url"
+            class="form-control"
+            id="imgURL"
+            required
+            maxlength="2000"
+            name="imgURL"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">House Price</label>
+          <input
+            type="number"
+            class="form-control"
+            id="price"
+            placeholder="House Price..."
+            required
+            maxlength="100"
+            name="price"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="bedrooms" class="form-label">Number Of Bedrooms</label>
+          <input
+            type="number"
+            class="form-control"
+            id="bedrooms"
+            placeholder="Number of Bedrooms..."
+            required
+            maxlength="2"
+            name="bedrooms"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="bathrooms" class="form-label">Number Of Bathrooms</label>
+          <input
+            type="number"
+            class="form-control"
+            id="bathrooms"
+            placeholder="Number of Bathrooms..."
+            required
+            maxlength="2"
+            name="bathrooms"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="sqft" class="form-label">Square Footage</label>
+          <input
+            type="number"
+            class="form-control"
+            id="sqft"
+            placeholder="Square Footage..."
+            required
+            maxlength="5"
+            name="sqft"
+          />
+        </div>
+        <div class="text-end">
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
   </div>
+  <div class="row" id="housesListings"></div>
 </div>

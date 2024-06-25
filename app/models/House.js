@@ -25,7 +25,7 @@ export class House {
                     </div>
                     <div class="col-12 col-md-8">
                         <div class="p-3">
-                            <h2>${this.creator}</h2>
+                            <h2>${this.creator.name}</h2>
                             <h2>$${this.price}</h2>
                             
                             <h4>Bedrooms: ${this.bedrooms}</h4>
@@ -33,8 +33,11 @@ export class House {
                             <h5>
                                 Description: ${this.description}
                             </h5>
+                            <h5>Created On: ${this.createdAt.toLocaleDateString()}</h5>
                             <div class="text-end">
-                                <button onclick="app.HousesController.destroyHouse('${this.id}')"
+                                <button onclick="app.HousesController.destroyHouse('${
+                                  this.id
+                                }')"
                                     class="btn btn-outline-danger" type="button">Delete House</button>
                             </div>
                         </div>
